@@ -3,8 +3,9 @@
  * Copyright 2019-2021 CNRS-UM LIRMM, CNRS-AIST JRL
  */
 
-#include <gram_savitzky_golay/gram_savitzky_golay.h>
-#include <iostream>
+#include <gram_savitzky_golay.h>
+// #include <iostream>
+#include <math.h>
 
 namespace gram_sg
 {
@@ -64,17 +65,17 @@ void SavitzkyGolayFilter::init()
   // Compute weights for the time window 2*m+1, for the t'th least-square
   // point of the s'th derivative
   weights_ = ComputeWeights(static_cast<int>(conf_.m), conf_.t, static_cast<int>(conf_.n), static_cast<int>(conf_.s));
-  dt_ = std::pow(conf_.time_step(), conf_.derivation_order());
+  dt_ = pow(conf_.time_step(), conf_.derivation_order());
 }
 
-std::ostream & operator<<(std::ostream & os, const SavitzkyGolayFilterConfig & conf)
-{
-  os << "m                       : " << conf.m << std::endl
-     << "Window Size (2*m+1)     : " << 2 * conf.m + 1 << std::endl
-     << "n (Order)               :" << conf.n << std::endl
-     << "s (Differentiate)       : " << conf.s << std::endl
-     << "t: Filter point ([-m,m]): " << conf.t << std::endl;
-  return os;
-}
+// std::ostream & operator<<(std::ostream & os, const SavitzkyGolayFilterConfig & conf)
+// {
+//   os << "m                       : " << conf.m << std::endl
+//      << "Window Size (2*m+1)     : " << 2 * conf.m + 1 << std::endl
+//      << "n (Order)               :" << conf.n << std::endl
+//      << "s (Differentiate)       : " << conf.s << std::endl
+//      << "t: Filter point ([-m,m]): " << conf.t << std::endl;
+//   return os;
+// }
 
 } // namespace gram_sg

@@ -3,10 +3,9 @@
  * Copyright 2019-2021 CNRS-UM LIRMM, CNRS-AIST JRL
  */
 
-#pragma once
+// #pragma once
 
-#include <Eigen/Core>
-#include <gram_savitzky_golay/api.h>
+// #include <Eigen/Core>
 #include <sstream>
 #include <vector>
 
@@ -16,26 +15,26 @@ namespace gram_sg
  * @brief Calculates the Gram Polynomial (s=0) or its sth derivative
  *  evaluated at i, order k, over 2m+1 points
  */
-double GRAM_SAVITZKY_GOLAY_DLLAPI GramPoly(const int i, const int m, const int k, const int s);
+double GramPoly(const int i, const int m, const int k, const int s);
 
 /*!
  * @brief Calculates the generalized factorial \f$ (a)(a-1)(a-2)...(a-b+1) \f$
  */
-double GRAM_SAVITZKY_GOLAY_DLLAPI GenFact(const int a, const int b);
+double GenFact(const int a, const int b);
 
 /*!
  * Weight Calculates the weight of the ith data point for the t'th
  * Least-Square point of the s'th derivative, over `2m+1` points, order n
  */
-double GRAM_SAVITZKY_GOLAY_DLLAPI Weight(const int i, const int t, const int m, const int n, const int s);
+double Weight(const int i, const int t, const int m, const int n, const int s);
 
 /*!
  * Computes the weights for each data point over the window of size `2*m+1`,
  * evaluated at time t, with order n and derivative s
  */
-std::vector<double> GRAM_SAVITZKY_GOLAY_DLLAPI ComputeWeights(const int m, const int t, const int n, const int s);
+std::vector<double> ComputeWeights(const int m, const int t, const int n, const int s);
 
-struct GRAM_SAVITZKY_GOLAY_DLLAPI SavitzkyGolayFilterConfig
+struct SavitzkyGolayFilterConfig
 {
   //! Window size is 2*m+1
   unsigned m = 5;
@@ -116,10 +115,10 @@ struct GRAM_SAVITZKY_GOLAY_DLLAPI SavitzkyGolayFilterConfig
     return dt;
   }
 
-  friend std::ostream & operator<<(std::ostream & os, const SavitzkyGolayFilterConfig & conf);
+  // friend std::ostream & operator<<(std::ostream & os, const SavitzkyGolayFilterConfig & conf);
 };
 
-struct GRAM_SAVITZKY_GOLAY_DLLAPI SavitzkyGolayFilter
+struct SavitzkyGolayFilter
 {
   SavitzkyGolayFilter(unsigned m, int t, unsigned n, unsigned s, double dt = 1.) : conf_(m, t, n, s, dt)
   {
